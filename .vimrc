@@ -1,24 +1,29 @@
 call plug#begin('~/.vim/plugged')
 Plug 'ap/vim-buftabline'
 Plug 'ap/vim-css-color'
-Plug 'itchyny/lightline.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'chrisbra/csv.vim'
 Plug 'gruvbox-community/gruvbox'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'itchyny/lightline.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mhinz/vim-startify'
 Plug 'mogelbrod/vim-jsonpath'
-Plug 'chrisbra/csv.vim'
+Plug 'mtdl9/vim-log-highlighting'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tomtom/tcomment_vim'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
+let g:coc_start_at_startup = v:false
+
 " theme
-colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_contrast_light="hard"
+colorscheme gruvbox
 
 let g:coc_global_extensions =["coc-tsserver"]
 
@@ -87,10 +92,10 @@ set mouse=a
 set nocompatible
 set noerrorbells visualbell t_vb= "disable flashing
 set noshowmode
-set pumheight=10 "pop up length
 set number
 set scrolloff=5
 set shiftwidth=2
+set cmdheight=0
 set shortmess+=c "disable completion-menu messages
 set showcmd "display incomplete commands
 set signcolumn=yes "always show signcolumns
