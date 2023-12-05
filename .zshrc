@@ -47,13 +47,43 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.nvm/current/bin/node"
 export NVM_SYMLINK_CURRENT=true
 initnvm(){
-	[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
-	# uncomment for nvm auto completion
- 	# [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    # uncomment for nvm auto completion
+     # [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 }
 initnvm
 
-# homebre settings
+# homebrew settings
 export HOMEBREW_NO_ANALYTICS=1              # disables the homebrew analytics tool
 export HOMEBREW_CASK_OPTS=--require-sha
 export HOMEBREW_NO_INSECURE_REDIRECT=1
+
+p() {
+  # Check for npm lockfile
+  if [[ -f "package-lock.json" ]]; then
+    echo "Using npm..."
+    npm "$@"
+    return
+  fi
+
+  # Check for yarn lockfile
+  if [[ -f "yarn.lock" ]]; then
+    echo "Using yarn..."
+    yarn "$@"
+    return
+  fi
+
+  # Check for bun lockfile
+  if [[ -f "Bunfile.lock" ]]; then
+    echo "Using bun..."
+    bun "$@"
+    return
+  fi
+
+  # If no lockfile found, provide a message
+  echo "No lockfile found. Please use npm, yarn, or bun with the appropriate lockfile in the current directory."
+}
+
+alias pi="p install"
+
+# ----- personal ------
